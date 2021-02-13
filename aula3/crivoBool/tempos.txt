@@ -1,0 +1,11 @@
+1000 = 0,00s user 0,00s system 0% cpu 2,294 total
+10000 = 0,00s user 0,00s system 0% cpu 2,549 total
+100000 = 0,00s user 0,00s system 0% cpu 5,295 total
+1000000 = 0,02s user 0,00s system 0% cpu 4,073 total
+10000000 = 0,26s user 0,00s system 6% cpu 3,905 total
+100000000 = 3,41s user 0,01s system 43% cpu 7,869 total
+1000000000 = 39,38s user 0,15s system 90% cpu 43,528 total
+10000000000 = 60,35s user 0,28s system 93% cpu 1:05,11 total
+
+
+
