@@ -1,4 +1,5 @@
 #include"bst.h"
+#include"pilha.h"
 
 root *criaArvoreVazia(){
   root *arvoreVazia = malloc(sizeof(root));
@@ -92,3 +93,126 @@ int medeNos(no *no){
     return esq;
   }
 }
+
+void rec_preorder(no *t, void (*visit)(no*)){
+  visit(t);
+
+  if(t->esq != NULL){
+    visit(t->esq);
+  }
+
+  if(t->dir != NULL){
+    visit(t->dir);
+  }
+}
+
+void rec_inorder(no *t, void (*visit)(no*)){
+  if(t->esq != NULL){
+    visit(t->esq);
+  }
+
+  visit(t);
+
+  if(t->dir 
+  != NULL){
+    visit(t->dir);
+  }
+}
+
+void rec_posorder(no *t, void (*visit)(no*)){
+  if(t->esq != NULL){
+    visit(t->esq);
+  }
+  
+  if(t->dir 
+  != NULL){
+    visit(t->dir);
+  }
+
+  visit(t);
+}
+
+void inOrder(root *arvore, void (*visit)(no*)){
+  if(arvore->no != NULL){
+    rec_inorder(arvore->no, visit);
+  }
+}
+
+void preOrder(root *arvore, void (*visit)(no*)){
+  if(arvore->no != NULL){
+    rec_preorder(arvore->no, visit);
+  }
+}
+
+void posOrder(root *arvore, void (*visit)(no*)){
+  if(arvore->no != NULL){
+    rec_posorder(arvore->no, visit);
+  }
+}
+
+void preOrderPilha(root *arvore, void (*visit)(no*)){
+  if(arvore->no != NULL){
+    preOrderPilhaNo(arvore->no,visit);
+  }
+}
+void preOrderPilhaNo(no *node, void (*visit)(no*)){
+  sentinela *pilha = initSentinela();
+  push(pilha, node);
+  while(pilha->prim != NULL){
+    no *aux = pop(pilha);
+    visit(aux);
+    push(pilha, aux->dir);
+    push(pilha, aux->esq);
+    
+  }
+  destroiSentinela(pilha);
+}
+
+void inOrderPilha(root *arvore, void (*visit)(no*)){
+  if(arvore->no != NULL){
+    inOrderPilhaNo(arvore->no,visit);
+  }
+}
+
+void inOrderPilhaNo(no *node, void (*visit)(no*)){
+  sentinela *pilha = initSentinela();
+  no *aux = node;
+  while(aux != NULL || pilha->prim !=NULL){
+    if(aux != NULL){
+      push(pilha, aux);
+      aux = aux ->esq;
+    }else{
+      aux = pop(pilha);
+      visit(aux);
+      aux = aux->dir;
+    }
+  }
+  destroiSentinela(pilha);
+};
+
+void posOrderPilha(root *arvore, void (*visit)(no*)){
+  if(arvore->no != NULL){
+    posOrderPilhaNo(arvore->no,visit);
+  }
+}
+
+void posOrderPilhaNo(no *node, void (*visit)(no*)){
+  sentinela *pilha = initSentinela();
+  no *ultimoVisitado = NULL;
+  no *aux = node;
+  while(aux != NULL || pilha->prim !=NULL){
+    if(aux != NULL){
+      push(pilha, aux);
+      aux = aux ->esq;
+    }else{
+      aux = pilha->prim;
+      if(aux->dir != NULL && ultimoVisitado != aux->dir){
+        aux= aux->dir;
+      }else{
+        visit(aux);
+        ultimoVisitado = pop(pilha);
+      }
+    }
+  }
+  destroiSentinela(pilha);
+};
