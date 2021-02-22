@@ -1,0 +1,13 @@
+in order :
+recursive time : 0.000001 seconds
+non recursive time: 1.232790 seconds
+
+pre order :
+recursive time : 0.000002 seconds
+non recursive time: 1.064846 seconds
+
+pos order :
+recursive  time : 0.000001 seconds
+non recursive time: 1.312316 seconds
+
+

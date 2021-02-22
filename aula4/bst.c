@@ -161,8 +161,12 @@ void preOrderPilhaNo(no *node, void (*visit)(no*)){
   while(pilha->prim != NULL){
     no *aux = pop(pilha);
     visit(aux);
-    push(pilha, aux->dir);
-    push(pilha, aux->esq);
+    if(aux->dir != NULL){
+      push(pilha, aux->dir);
+    }
+    if(aux->esq != NULL){
+      push(pilha, aux->esq);
+    }
     
   }
   destroiSentinela(pilha);
@@ -205,14 +209,14 @@ void posOrderPilhaNo(no *node, void (*visit)(no*)){
       push(pilha, aux);
       aux = aux ->esq;
     }else{
-      aux = pilha->prim;
-      if(aux->dir != NULL && ultimoVisitado != aux->dir){
-        aux= aux->dir;
+      no *topo = pilha->prim->item;
+      if(topo->dir != NULL && ultimoVisitado != topo->dir){
+        aux= topo->dir;
       }else{
-        visit(aux);
+        visit(topo);
         ultimoVisitado = pop(pilha);
       }
     }
   }
-  destroiSentinela(pilha);
+  free(pilha);
 };
