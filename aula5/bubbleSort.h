@@ -1,5 +1,5 @@
-#ifndef INSERTSORT_H_
-#define INSERTSORT_H_
+#ifndef BUBBLESORT_H_
+#define BUBBLESORT_H_
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -7,4 +7,4 @@
 
 void sort(Item *a, int lo, int hi);
 
-#endif // !INSERTSORT_H_
+#endif // !BUBBLESORT_H_
